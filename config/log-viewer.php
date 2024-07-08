@@ -5,6 +5,8 @@ use Arcanedev\LogViewer\Contracts\Utilities\LogLevels as LogLevelsContract;
 
 return [
 
+    'log_levels' => LogLevelsContract::class,
+
     'storage-path'  => storage_path('logs'),
 
     'pattern'       => [

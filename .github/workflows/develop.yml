@@ -1,3 +1,4 @@
+
 name: Deploy Laravel to Develop
 
 on:
@@ -15,7 +16,7 @@ jobs:
 
       - name: Compile CSS and Javascript
         run: |
-          npm install --dev
+          npm install
           npm run build
 
       - name: Configure PHP 8.2
@@ -24,11 +25,8 @@ jobs:
           php-version: 8.2
           extensions: mbstring, ctype, fileinfo, openssl, PDO, bcmath, json, tokenizer, xml
 
-      - name: Composer update
-        run: composer update
-
       - name: Composer install
-        run: composer install --no-dev --no-interaction --prefer-dist
+        run: composer install --no-interaction --prefer-dist --ignore-platform-reqs
 
       - name: Create deployment artifact
         env:
@@ -73,11 +71,12 @@ jobs:
             echo ${SERVER_PASSWORD} | sudo -S mkdir -p ${{ secrets.DEPLOY_PATH }}/dev/backend/storage/{app,public,framework,logs,clockwork}
             echo ${SERVER_PASSWORD} | sudo -S mkdir -p ${{ secrets.DEPLOY_PATH }}/dev/backend/storage/framework/{cache,sessions,testing,views}
             echo ${SERVER_PASSWORD} | sudo -S mkdir -p ${{ secrets.DEPLOY_PATH }}/dev/backend/storage/framework/cache/data
-            echo ${SERVER_PASSWORD} | sudo -S mkdir -p ${{ secrets.DEPLOY_PATH }}/dev/backend/storage/app/public/files
+            echo ${SERVER_PASSWORD} | sudo -S mkdir -p ${{ secrets.DEPLOY_PATH }}/dev/backend/storage/app/public
+            echo ${SERVER_PASSWORD} | sudo -S mkdir -p ${{ secrets.DEPLOY_PATH }}/dev/backend/storage/app/public/uploads
 
             # Set permissions to folder
             echo ${SERVER_PASSWORD} | sudo -S chown -R root.www-data "${{ secrets.DEPLOY_PATH }}/dev/backend/"
-            echo ${SERVER_PASSWORD} | sudo -S chmod -Rf 0777 ${{ secrets.DEPLOY_PATH }}/dev/backend/storage
+            echo ${SERVER_PASSWORD} | sudo -S chmod -R 0777 ${{ secrets.DEPLOY_PATH }}/dev/backend/storage
 
       - name: Run migrations and clean cache
         uses: appleboy/ssh-action@master
@@ -93,14 +92,13 @@ jobs:
           script: |
             # Run migrations and clean cache
             cd "${{ secrets.DEPLOY_PATH }}/dev/backend"
-            echo ${SERVER_PASSWORD} | sudo -S composer install
-            echo ${SERVER_PASSWORD} | sudo -S php artisan key:generate
+            echo ${SERVER_PASSWORD} | sudo -S php artisan passport:keys
             echo ${SERVER_PASSWORD} | sudo -S php artisan storage:link
+            echo ${SERVER_PASSWORD} | sudo -S php artisan vendor:publish --tag=laravel-assets --ansi --force
             echo ${SERVER_PASSWORD} | sudo -S php artisan config:clear
             echo ${SERVER_PASSWORD} | sudo -S php artisan optimize
             echo ${SERVER_PASSWORD} | sudo -S php artisan migrate
             echo ${SERVER_PASSWORD} | sudo -S supervisorctl restart all
-            echo ${SERVER_PASSWORD} | sudo -S php artisan route:clear
-            echo ${SERVER_PASSWORD} | sudo -S php artisan scribe:generate
+            
             #Run clean up
             rm -rf /tmp/artifacts

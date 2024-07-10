@@ -42,7 +42,7 @@ jobs:
         env:
           GITHUB_SHA: ${{ github.sha }}
           SERVER_PASSWORD: ${{ secrets.SERVER_PASSWORD }}
-          LARAVEL_ENV: ${{ secrets.LARAVEL_ENV_QA }}
+          LARAVEL_ENV: ${{ vars.LARAVEL_ENV_QA }}
         with:
           host: ${{ secrets.SERVER_IP }}
           username: ${{ secrets.SERVER_USERNAME }}

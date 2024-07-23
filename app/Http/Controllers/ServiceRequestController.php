@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ServiceRequestRequest;
+use App\Models\ServiceRequest;
 use Illuminate\Http\Request;
 
 class ServiceRequestController extends Controller
@@ -25,9 +27,12 @@ class ServiceRequestController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(ServiceRequestRequest $request)
     {
-        //
+        $product = ServiceRequest::create($request->validated()); // Usa `validated()` para obtener los datos validados
+        $product->addMediaFromRequest('damaged_appliance_image')
+            ->usingName($product->appliance_type)
+            ->toMediaCollection();
     }
 
     /**

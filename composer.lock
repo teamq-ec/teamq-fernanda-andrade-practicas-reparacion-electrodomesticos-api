@@ -1259,6 +1259,7 @@
                     "dev-master": "1.x-dev"
                 },
                 "laravel": {
+<<<<<<< Updated upstream
                     "providers": [
                         "Intervention\\Image\\ImageServiceProvider",
                         "Laravel\\Fortify\\FortifyServiceProvider"
@@ -1266,6 +1267,9 @@
                     "aliases": {
                         "Image": "Intervention\\Image\\Facades\\Image"
                     }
+=======
+                    "providers": ["Laravel\\Fortify\\FortifyServiceProvider"]
+>>>>>>> Stashed changes
                 }
             },
             "autoload": {
@@ -1288,6 +1292,7 @@
                 }
             ],
             "description": "Backend controllers and scaffolding for Laravel authentication.",
+<<<<<<< Updated upstream
             "homepage": "https://laravel.com/docs/9.x/fortify",
             "keywords": [
                 "auth",
@@ -1298,6 +1303,9 @@
                 "thumbnail",
                 "watermark"
             ],
+=======
+            "keywords": ["auth", "laravel"],
+>>>>>>> Stashed changes
             "support": {
                 "issues": "https://github.com/laravel/fortify/issues",
                 "source": "https://github.com/laravel/fortify"

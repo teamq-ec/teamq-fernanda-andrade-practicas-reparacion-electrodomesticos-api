@@ -4,8 +4,200 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b4e6d19a0928dcd3876988dec1af8a7a",
+    "content-hash": "5d51dedff2e7e9dad4c475cf3f30c826",
     "packages": [
+        {
+            "name": "arcanedev/log-viewer",
+            "version": "10.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ARCANEDEV/LogViewer.git",
+                "reference": "05ab2b8b65ae293766ba9fd50ee1051269c16c90"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ARCANEDEV/LogViewer/zipball/05ab2b8b65ae293766ba9fd50ee1051269c16c90",
+                "reference": "05ab2b8b65ae293766ba9fd50ee1051269c16c90",
+                "shasum": ""
+            },
+            "require": {
+                "arcanedev/support": "^10.0",
+                "ext-json": "*",
+                "php": "^8.1",
+                "psr/log": "^1.0|^2.0|^3.0"
+            },
+            "require-dev": {
+                "laravel/framework": "^10.0",
+                "mockery/mockery": "^1.5.1",
+                "orchestra/testbench-core": "^8.0",
+                "phpunit/phpunit": "^10.1"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-develop": "10.x-dev"
+                },
+                "laravel": {
+                    "providers": [
+                        "Arcanedev\\LogViewer\\LogViewerServiceProvider",
+                        "Arcanedev\\LogViewer\\Providers\\DeferredServicesProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "files": [
+                    "helpers.php"
+                ],
+                "psr-4": {
+                    "Arcanedev\\LogViewer\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "ARCANEDEV",
+                    "email": "arcanedev.maroc@gmail.com",
+                    "homepage": "https://github.com/arcanedev-maroc",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Provides a Log Viewer for Laravel",
+            "homepage": "https://github.com/ARCANEDEV/LogViewer",
+            "keywords": [
+                "arcanedev",
+                "arcanesoft",
+                "laravel",
+                "log",
+                "log viewer",
+                "log-viewer",
+                "logviewer"
+            ],
+            "support": {
+                "issues": "https://github.com/ARCANEDEV/LogViewer/issues",
+                "source": "https://github.com/ARCANEDEV/LogViewer/tree/10.1.1"
+            },
+            "time": "2024-03-17T21:37:46+00:00"
+        },
+        {
+            "name": "arcanedev/support",
+            "version": "10.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ARCANEDEV/Support.git",
+                "reference": "5326ed2090ab57ade4351936018ebf2f0f0a6579"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ARCANEDEV/Support/zipball/5326ed2090ab57ade4351936018ebf2f0f0a6579",
+                "reference": "5326ed2090ab57ade4351936018ebf2f0f0a6579",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/contracts": "^10.0",
+                "illuminate/support": "^10.0",
+                "php": "^8.1"
+            },
+            "require-dev": {
+                "laravel/framework": "^10.0",
+                "orchestra/testbench-core": "^8.0",
+                "phpunit/phpunit": "^10.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-develop": "10.x-dev"
+                }
+            },
+            "autoload": {
+                "files": [
+                    "helpers.php"
+                ],
+                "psr-4": {
+                    "Arcanedev\\Support\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "ARCANEDEV",
+                    "email": "arcanedev.maroc@gmail.com",
+                    "homepage": "https://github.com/arcanedev-maroc"
+                }
+            ],
+            "description": "ARCANEDEV Support Helpers",
+            "homepage": "https://github.com/ARCANEDEV/Support",
+            "keywords": [
+                "arcanedev",
+                "arcanesoft",
+                "laravel",
+                "support"
+            ],
+            "support": {
+                "issues": "https://github.com/ARCANEDEV/Support/issues",
+                "source": "https://github.com/ARCANEDEV/Support/tree/10.0.1"
+            },
+            "time": "2023-10-06T13:55:57+00:00"
+        },
+        {
+            "name": "bacon/bacon-qr-code",
+            "version": "v3.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Bacon/BaconQrCode.git",
+                "reference": "510de6eca6248d77d31b339d62437cc995e2fb41"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Bacon/BaconQrCode/zipball/510de6eca6248d77d31b339d62437cc995e2fb41",
+                "reference": "510de6eca6248d77d31b339d62437cc995e2fb41",
+                "shasum": ""
+            },
+            "require": {
+                "dasprid/enum": "^1.0.3",
+                "ext-iconv": "*",
+                "php": "^8.1"
+            },
+            "require-dev": {
+                "phly/keep-a-changelog": "^2.12",
+                "phpunit/phpunit": "^10.5.11 || 11.0.4",
+                "spatie/phpunit-snapshot-assertions": "^5.1.5",
+                "squizlabs/php_codesniffer": "^3.9"
+            },
+            "suggest": {
+                "ext-imagick": "to generate QR code images"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "BaconQrCode\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-2-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Ben Scholzen 'DASPRiD'",
+                    "email": "mail@dasprids.de",
+                    "homepage": "https://dasprids.de/",
+                    "role": "Developer"
+                }
+            ],
+            "description": "BaconQrCode is a QR code generator for PHP.",
+            "homepage": "https://github.com/Bacon/BaconQrCode",
+            "support": {
+                "issues": "https://github.com/Bacon/BaconQrCode/issues",
+                "source": "https://github.com/Bacon/BaconQrCode/tree/v3.0.0"
+            },
+            "time": "2024-04-18T11:16:25+00:00"
+        },
         {
             "name": "brick/math",
             "version": "0.12.1",
@@ -136,17 +328,67 @@
             "time": "2023-12-11T17:09:12+00:00"
         },
         {
-            "name": "dflydev/dot-access-data",
-            "version": "v3.0.2",
+            "name": "dasprid/enum",
+            "version": "1.0.5",
             "source": {
                 "type": "git",
-                "url": "https://github.com/dflydev/dflydev-dot-access-data.git",
-                "reference": "f41715465d65213d644d3141a6a93081be5d3549"
+                "url": "https://github.com/DASPRiD/Enum.git",
+                "reference": "6faf451159fb8ba4126b925ed2d78acfce0dc016"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dflydev/dflydev-dot-access-data/zipball/f41715465d65213d644d3141a6a93081be5d3549",
-                "reference": "f41715465d65213d644d3141a6a93081be5d3549",
+                "url": "https://api.github.com/repos/DASPRiD/Enum/zipball/6faf451159fb8ba4126b925ed2d78acfce0dc016",
+                "reference": "6faf451159fb8ba4126b925ed2d78acfce0dc016",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1 <9.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^7 | ^8 | ^9",
+                "squizlabs/php_codesniffer": "*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "DASPRiD\\Enum\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-2-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Ben Scholzen 'DASPRiD'",
+                    "email": "mail@dasprids.de",
+                    "homepage": "https://dasprids.de/",
+                    "role": "Developer"
+                }
+            ],
+            "description": "PHP 7.1 enum implementation",
+            "keywords": [
+                "enum",
+                "map"
+            ],
+            "support": {
+                "issues": "https://github.com/DASPRiD/Enum/issues",
+                "source": "https://github.com/DASPRiD/Enum/tree/1.0.5"
+            },
+            "time": "2023-08-25T16:18:39+00:00"
+        },
+        {
+            "name": "dflydev/dot-access-data",
+            "version": "v3.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/dflydev/dflydev-dot-access-data.git",
+                "reference": "a23a2bf4f31d3518f3ecb38660c95715dfead60f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/dflydev/dflydev-dot-access-data/zipball/a23a2bf4f31d3518f3ecb38660c95715dfead60f",
+                "reference": "a23a2bf4f31d3518f3ecb38660c95715dfead60f",
                 "shasum": ""
             },
             "require": {
@@ -206,9 +448,9 @@
             ],
             "support": {
                 "issues": "https://github.com/dflydev/dflydev-dot-access-data/issues",
-                "source": "https://github.com/dflydev/dflydev-dot-access-data/tree/v3.0.2"
+                "source": "https://github.com/dflydev/dflydev-dot-access-data/tree/v3.0.3"
             },
-            "time": "2022-10-27T11:44:00+00:00"
+            "time": "2024-07-08T12:26:09+00:00"
         },
         {
             "name": "doctrine/inflector",
@@ -1050,42 +1292,52 @@
             ],
             "time": "2023-12-03T19:50:20+00:00"
         },
-        {
-            "name": "intervention/image",
-            "version": "2.7.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Intervention/image.git",
-                "reference": "04be355f8d6734c826045d02a1079ad658322dad"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/Intervention/image/zipball/04be355f8d6734c826045d02a1079ad658322dad",
-                "reference": "04be355f8d6734c826045d02a1079ad658322dad",
-                "shasum": ""
-            },
-            "require": {
-                "ext-fileinfo": "*",
-                "guzzlehttp/psr7": "~1.1 || ^2.0",
-                "php": ">=5.4.0"
-            },
-            "require-dev": {
-                "mockery/mockery": "~0.9.2",
-                "phpunit/phpunit": "^4.8 || ^5.7 || ^7.5.15"
-            },
-            "suggest": {
-                "ext-gd": "to use GD library based image processing.",
-                "ext-imagick": "to use Imagick based image processing.",
-                "intervention/imagecache": "Caching extension for the Intervention Image library"
-            },
+{
+    "require": {
+        "intervention/image": "2.7.2",
+        "laravel/fortify": "v1.21.4",
+        "bacon/bacon-qr-code": "^3.0",
+        "ext-fileinfo": "*",
+        "ext-json": "*",
+        "guzzlehttp/psr7": "~1.1 || ^2.0",
+        "illuminate/support": "^10.0|^11.0",
+        "php": "^8.1",
+        "pragmarx/google2fa": "^8.0",
+        "symfony/console": "^6.0|^7.0"
+    },
+    "require-dev": {
+        "mockery/mockery": "^1.0",
+        "orchestra/testbench": "^8.16|^9.0",
+        "phpstan/phpstan": "^1.10",
+        "phpunit/phpunit": "^10.4"
+    },
+    "suggest": {
+        "ext-gd": "To use GD library based image processing.",
+        "ext-imagick": "To use Imagick based image processing.",
+        "intervention/imagecache": "Caching extension for the Intervention Image library"
+    },
+    "source": {
+        "type": "git",
+        "url": "https://github.com/laravel/fortify.git",
+        "reference": "5c2e9cdf589e439feb1ed2911d4acc7ece0ec49e"
+    },
+    "dist": {
+        "type": "zip",
+        "url": "https://api.github.com/repos/laravel/fortify/zipball/5c2e9cdf589e439feb1ed2911d4acc7ece0ec49e",
+        "reference": "5c2e9cdf589e439feb1ed2911d4acc7ece0ec49e",
+        "shasum": ""
+    },
+    "time": "2024-06-27T07:55:32+00:00"
+}
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.4-dev"
+                    "dev-master": "1.x-dev"
                 },
                 "laravel": {
                     "providers": [
-                        "Intervention\\Image\\ImageServiceProvider"
+                        "Intervention\\Image\\ImageServiceProvider",
+                        "Laravel\\Fortify\\FortifyServiceProvider"
                     ],
                     "aliases": {
                         "Image": "Intervention\\Image\\Facades\\Image"
@@ -1094,46 +1346,53 @@
             },
             "autoload": {
                 "psr-4": {
-                    "Intervention\\Image\\": "src/Intervention/Image"
+                    "Intervention\\Image\\": "src/Intervention/Image",
+                   "Laravel\\Fortify\\": "src/"
+
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
-            "authors": [
-                {
-                    "name": "Oliver Vogel",
-                    "email": "oliver@intervention.io",
-                    "homepage": "https://intervention.io/"
-                }
-            ],
-            "description": "Image handling and manipulation library with support for Laravel integration",
-            "homepage": "http://image.intervention.io/",
-            "keywords": [
-                "gd",
-                "image",
-                "imagick",
-                "laravel",
-                "thumbnail",
-                "watermark"
-            ],
-            "support": {
-                "issues": "https://github.com/Intervention/image/issues",
-                "source": "https://github.com/Intervention/image/tree/2.7.2"
-            },
-            "funding": [
-                {
-                    "url": "https://paypal.me/interventionio",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://github.com/Intervention",
-                    "type": "github"
-                }
-            ],
-            "time": "2022-05-21T17:30:32+00:00"
+ "authors": [
+        {
+            "name": "Taylor Otwell",
+            "email": "taylor@laravel.com"
         },
+        {
+            "name": "Oliver Vogel",
+            "email": "oliver@intervention.io",
+            "homepage": "https://intervention.io/"
+        }
+    ],
+    "description": "Backend controllers and scaffolding for Laravel authentication.",
+    "homepage": "https://laravel.com/docs/9.x/fortify",
+    "keywords": [
+        "auth",
+        "laravel",
+        "gd",
+        "image",
+        "imagick",
+        "thumbnail",
+        "watermark"
+    ],
+    "support": {
+        "issues": "https://github.com/laravel/fortify/issues",
+        "source": "https://github.com/laravel/fortify"
+    },
+    "funding": [
+        {
+            "url": "https://paypal.me/interventionio",
+            "type": "custom"
+        },
+        {
+            "url": "https://github.com/Intervention",
+            "type": "github"
+        }
+    ],
+    "time": "2024-06-27T07:55:32+00:00"
+},
         {
             "name": "laravel/framework",
             "version": "v10.48.15",
@@ -2614,6 +2873,73 @@
             "time": "2023-02-08T01:06:31+00:00"
         },
         {
+            "name": "paragonie/constant_time_encoding",
+            "version": "v2.7.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/paragonie/constant_time_encoding.git",
+                "reference": "52a0d99e69f56b9ec27ace92ba56897fe6993105"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/paragonie/constant_time_encoding/zipball/52a0d99e69f56b9ec27ace92ba56897fe6993105",
+                "reference": "52a0d99e69f56b9ec27ace92ba56897fe6993105",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7|^8"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^6|^7|^8|^9",
+                "vimeo/psalm": "^1|^2|^3|^4"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "ParagonIE\\ConstantTime\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Paragon Initiative Enterprises",
+                    "email": "security@paragonie.com",
+                    "homepage": "https://paragonie.com",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "Steve 'Sc00bz' Thomas",
+                    "email": "steve@tobtu.com",
+                    "homepage": "https://www.tobtu.com",
+                    "role": "Original Developer"
+                }
+            ],
+            "description": "Constant-time Implementations of RFC 4648 Encoding (Base-64, Base-32, Base-16)",
+            "keywords": [
+                "base16",
+                "base32",
+                "base32_decode",
+                "base32_encode",
+                "base64",
+                "base64_decode",
+                "base64_encode",
+                "bin2hex",
+                "encoding",
+                "hex",
+                "hex2bin",
+                "rfc4648"
+            ],
+            "support": {
+                "email": "info@paragonie.com",
+                "issues": "https://github.com/paragonie/constant_time_encoding/issues",
+                "source": "https://github.com/paragonie/constant_time_encoding"
+            },
+            "time": "2024-05-08T12:18:48+00:00"
+        },
+        {
             "name": "phpoption/phpoption",
             "version": "1.9.2",
             "source": {
@@ -2687,6 +3013,58 @@
                 }
             ],
             "time": "2023-11-12T21:59:55+00:00"
+        },
+        {
+            "name": "pragmarx/google2fa",
+            "version": "v8.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/antonioribeiro/google2fa.git",
+                "reference": "80c3d801b31fe165f8fe99ea085e0a37834e1be3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/antonioribeiro/google2fa/zipball/80c3d801b31fe165f8fe99ea085e0a37834e1be3",
+                "reference": "80c3d801b31fe165f8fe99ea085e0a37834e1be3",
+                "shasum": ""
+            },
+            "require": {
+                "paragonie/constant_time_encoding": "^1.0|^2.0",
+                "php": "^7.1|^8.0"
+            },
+            "require-dev": {
+                "phpstan/phpstan": "^0.12.18",
+                "phpunit/phpunit": "^7.5.15|^8.5|^9.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "PragmaRX\\Google2FA\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Antonio Carlos Ribeiro",
+                    "email": "acr@antoniocarlosribeiro.com",
+                    "role": "Creator & Designer"
+                }
+            ],
+            "description": "A One Time Password Authentication package, compatible with Google Authenticator.",
+            "keywords": [
+                "2fa",
+                "Authentication",
+                "Two Factor Authentication",
+                "google2fa"
+            ],
+            "support": {
+                "issues": "https://github.com/antonioribeiro/google2fa/issues",
+                "source": "https://github.com/antonioribeiro/google2fa/tree/v8.0.1"
+            },
+            "time": "2022-06-13T21:57:56+00:00"
         },
         {
             "name": "psr/clock",
@@ -7194,16 +7572,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "10.5.24",
+            "version": "10.5.26",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "5f124e3e3e561006047b532fd0431bf5bb6b9015"
+                "reference": "42e2f13ceaa2e34461bc89bea75407550b40b2aa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/5f124e3e3e561006047b532fd0431bf5bb6b9015",
-                "reference": "5f124e3e3e561006047b532fd0431bf5bb6b9015",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/42e2f13ceaa2e34461bc89bea75407550b40b2aa",
+                "reference": "42e2f13ceaa2e34461bc89bea75407550b40b2aa",
                 "shasum": ""
             },
             "require": {
@@ -7275,7 +7653,7 @@
             "support": {
                 "issues": "https://github.com/sebastianbergmann/phpunit/issues",
                 "security": "https://github.com/sebastianbergmann/phpunit/security/policy",
-                "source": "https://github.com/sebastianbergmann/phpunit/tree/10.5.24"
+                "source": "https://github.com/sebastianbergmann/phpunit/tree/10.5.26"
             },
             "funding": [
                 {
@@ -7291,7 +7669,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-06-20T13:09:54+00:00"
+            "time": "2024-07-08T05:30:46+00:00"
         },
         {
             "name": "sebastian/cli-parser",

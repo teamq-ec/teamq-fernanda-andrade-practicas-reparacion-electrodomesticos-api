@@ -1,0 +1,95 @@
+name: Deploy Laravel to Qa
+
+on:
+  push:
+    branches:
+      - qa
+
+jobs:
+  deploy-artifact:
+    name: Deploy artifact
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get last repository version
+        uses: actions/checkout@v2
+
+      - name: Configure PHP 8.1
+        uses: shivammathur/setup-php@master
+        with:
+          php-version: 8.1
+          extensions: mbstring, ctype, fileinfo, openssl, PDO, bcmath, json, tokenizer, xml
+
+      - name: Composer install
+        run: composer install --ignore-platform-reqs
+
+      - name: Create deployment artifact
+        env:
+          GITHUB_SHA: ${{ github.sha }}
+        run: tar -czf "${GITHUB_SHA}".tar.gz --exclude=*.git --exclude=node_modules *
+
+      - name: Upload to server
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.SERVER_IP }}
+          username: ${{ secrets.SERVER_USERNAME }}
+          password: ${{ secrets.SERVER_PASSWORD }}
+          port: ${{ secrets.SERVER_PORT }}
+          source: ${{ github.sha }}.tar.gz
+          target: /tmp/artifacts
+
+      - name: Extract files and create directories
+        uses: appleboy/ssh-action@master
+        env:
+          GITHUB_SHA: ${{ github.sha }}
+          SERVER_PASSWORD: ${{ secrets.SERVER_PASSWORD }}
+          LARAVEL_ENV: ${{ vars.LARAVEL_ENV_QA }}
+        with:
+          host: ${{ secrets.SERVER_IP }}
+          username: ${{ secrets.SERVER_USERNAME }}
+          password: ${{ secrets.SERVER_PASSWORD }}
+          port: ${{ secrets.SERVER_PORT }}
+          envs: GITHUB_SHA, SERVER_PASSWORD, LARAVEL_ENV
+          script: |
+            # Create a new directory
+            echo ${SERVER_PASSWORD} | sudo -S mkdir -p "${{ secrets.DEPLOY_PATH }}/qa/backend"
+            # Extract the tar file into the release directory
+            echo ${SERVER_PASSWORD} | sudo -S tar xzf /tmp/artifacts/${GITHUB_SHA}.tar.gz -C "${{ secrets.DEPLOY_PATH }}/qa/backend"
+            echo ${SERVER_PASSWORD} | sudo -S touch ${{ secrets.DEPLOY_PATH }}/qa/backend/.env
+            echo ${SERVER_PASSWORD} | sudo -S chown root.www-data ${{ secrets.DEPLOY_PATH }}/qa/backend/.env
+            echo ${SERVER_PASSWORD} | sudo -S chmod 0777 ${{ secrets.DEPLOY_PATH }}/qa/backend/.env
+            echo ${SERVER_PASSWORD} | sudo -S echo "${LARAVEL_ENV}" > "${{ secrets.DEPLOY_PATH }}/qa/backend/.env"
+            
+            # Create Laravel storage directories and set permissions
+            echo ${SERVER_PASSWORD} | sudo -S mkdir -p ${{ secrets.DEPLOY_PATH }}/qa/backend/storage/{app,public,framework,logs,clockwork}
+            echo ${SERVER_PASSWORD} | sudo -S mkdir -p ${{ secrets.DEPLOY_PATH }}/qa/backend/storage/framework/{cache,sessions,testing,views}
+            echo ${SERVER_PASSWORD} | sudo -S mkdir -p ${{ secrets.DEPLOY_PATH }}/qa/backend/storage/framework/cache/data
+            echo ${SERVER_PASSWORD} | sudo -S mkdir -p ${{ secrets.DEPLOY_PATH }}/qa/backend/storage/app/public/files
+            echo ${SERVER_PASSWORD} | sudo -S mkdir -p ${{ secrets.DEPLOY_PATH }}/qa/backend/storage/app/purify
+            # Set permissions to folder
+            echo ${SERVER_PASSWORD} | sudo -S chown -R root.www-data "${{ secrets.DEPLOY_PATH }}/qa/backend/"
+            echo ${SERVER_PASSWORD} | sudo -S chmod -R 0777 ${{ secrets.DEPLOY_PATH }}/qa/backend/storage
+      - name: Run migrations and clean cache
+        uses: appleboy/ssh-action@master
+        env:
+          GITHUB_SHA: ${{ github.sha }}
+          SERVER_PASSWORD: ${{ secrets.SERVER_PASSWORD }}
+        with:
+          host: ${{ secrets.SERVER_IP }}
+          username: ${{ secrets.SERVER_USERNAME }}
+          password: ${{ secrets.SERVER_PASSWORD }}
+          port: ${{ secrets.SERVER_PORT }}
+          envs: GITHUB_SHA, SERVER_PASSWORD
+          script: |
+            # Run migrations and clean cache
+            cd "${{ secrets.DEPLOY_PATH }}/qa/backend"
+            echo ${SERVER_PASSWORD} | sudo -S php artisan key:generate
+            echo ${SERVER_PASSWORD} | sudo -S php artisan storage:link
+            echo ${SERVER_PASSWORD} | sudo -S php artisan scribe:generate
+            echo ${SERVER_PASSWORD} | sudo -S php artisan config:clear
+            echo ${SERVER_PASSWORD} | sudo -S php artisan optimize
+            echo ${SERVER_PASSWORD} | sudo -S php artisan migrate
+            echo ${SERVER_PASSWORD} | sudo -S composer dump-autoload
+            echo ${SERVER_PASSWORD} | sudo -S php artisan config:cache
+            echo ${SERVER_PASSWORD} | sudo -S php artisan db:seed
+            #Run clean up
+            rm -rf /tmp/artifacts

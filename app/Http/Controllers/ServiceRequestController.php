@@ -29,7 +29,7 @@ class ServiceRequestController extends Controller
      */
     public function store(ServiceRequestRequest $request)
     {
-        $product = ServiceRequest::create($request->validated()); // Usa `validated()` para obtener los datos validados
+        $product = ServiceRequest::create($request->validated());
         $product->addMediaFromRequest('damaged_appliance_image')
             ->usingName($product->appliance_type)
             ->toMediaCollection();

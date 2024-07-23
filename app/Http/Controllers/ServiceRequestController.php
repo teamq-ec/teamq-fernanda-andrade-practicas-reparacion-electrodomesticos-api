@@ -4,10 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ServiceRequestRequest;
 use App\Models\ServiceRequest;
-<<<<<<< Updated upstream
-=======
-use Illuminate\Contracts\Validation\Validator;
->>>>>>> Stashed changes
 use Illuminate\Http\Request;
 
 class ServiceRequestController extends Controller
@@ -33,33 +29,11 @@ class ServiceRequestController extends Controller
      */
     public function store(ServiceRequestRequest $request)
     {
-<<<<<<< Updated upstream
         $product = ServiceRequest::create($request->validated());
         $product->addMediaFromRequest('damaged_appliance_image')
             ->usingName($product->appliance_type)
             ->toMediaCollection();
-=======
-           // Obtener los datos validados
-    $validatedData = $request->validated();
-
-    // Guardar la imagen si se proporciona
-    if ($request->hasFile('damaged_appliance_image')) {
-        $imagePath = $request->file('damaged_appliance_image')->store('public/images');
-        $validatedData['damaged_appliance_image'] = $imagePath;
->>>>>>> Stashed changes
     }
-
-    // Crear el registro en la base de datos
-    $serviceRequest = ServiceRequest::create($validatedData);
-
-    // Retornar una respuesta
-    return response()->json([
-        'message' => 'Registro exitoso',
-        'data' => $serviceRequest,
-    ], 201);
-    }
-    
-    
 
     /**
      * Display the specified resource.

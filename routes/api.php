@@ -25,3 +25,4 @@ Route::post('register',[AuthController::class, 'register']);
 Route::post('login', [AuthController::class, 'login']);
 Route::middleware('auth:sanctum')->get('user', [AuthController::class, 'user']);
 Route::post('product', [ServiceRequestController::class, 'store']);
+Route::get('product/{product}', [ServiceRequestController::class, 'show']);

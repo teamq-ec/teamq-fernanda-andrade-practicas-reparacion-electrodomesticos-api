@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ApplianceController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ServiceRequestController;
 use Illuminate\Http\Request;
@@ -25,3 +26,6 @@ Route::post('register',[AuthController::class, 'register']);
 Route::post('login', [AuthController::class, 'login']);
 Route::middleware('auth:sanctum')->get('user', [AuthController::class, 'user']);
 Route::post('product', [ServiceRequestController::class, 'store']);
+Route::get('product/{product}', [ServiceRequestController::class, 'show']);
+// routes/api.php
+Route::get('/appliances/{userId}', [ApplianceController::class, 'getUserAppliances']);

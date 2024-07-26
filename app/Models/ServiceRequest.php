@@ -17,6 +17,8 @@ class ServiceRequest extends Model implements HasMedia
         'service_type', 'preferred_contact_method', 'damaged_appliance_image', 'state'
     ];
 
+    public $timestamps = true;
+
     public function user()
     {
         return $this->belongsTo(User::class);

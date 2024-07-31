@@ -11,7 +11,7 @@ class PaymentRecord extends Model
 
     protected $fillable = [
         'user_id', 'full_name', 'email', 'telephone_number',
-        'card_type', 'card_number', 'security_code', 'amount_payable'
+        'card_type', 'card_number', 'security_code', 'amount_payable','product_id',
     ];
 
     public function user()

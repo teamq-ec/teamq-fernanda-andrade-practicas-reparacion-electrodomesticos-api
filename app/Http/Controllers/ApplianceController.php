@@ -13,6 +13,7 @@ class ApplianceController extends Controller
     {
         $appliances = QueryBuilder::for(ServiceRequest::class)
             ->where('user_id', $userId)
+            ->where('state', 'pending')
             ->with('user') 
             ->allowedFilters([
                 AllowedFilter::partial('appliance_type'),

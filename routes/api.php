@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ApplianceController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\PaymentRecordController;
 use App\Http\Controllers\ServiceRequestController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -29,3 +30,4 @@ Route::post('product', [ServiceRequestController::class, 'store']);
 Route::get('product/{product}', [ServiceRequestController::class, 'show']);
 // routes/api.php
 Route::get('/appliances/{userId}', [ApplianceController::class, 'getUserAppliances']);
+Route::post('/payments', [PaymentRecordController::class, 'store']);

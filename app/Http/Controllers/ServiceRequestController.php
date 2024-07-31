@@ -33,8 +33,23 @@ class ServiceRequestController extends Controller
      */
     public function show($id)
     {
+        // Encuentra la solicitud de servicio con su usuario asociado, o lanza una excepción si no existe.
         $serviceRequest = ServiceRequest::with('user')->findOrFail($id);
-        return new ServiceRequestResource($serviceRequest);
+        
+        // Obtiene todas las solicitudes de servicio que están en estado 'pending'.
+        $pendingRequests = ServiceRequest::where('state', 'pending')->get();
+        
+        // Crea un recurso de la solicitud de servicio actual.
+        $serviceRequestResource = new ServiceRequestResource($serviceRequest);
+        
+        // Crea una colección de recursos para las solicitudes de servicio pendientes.
+        $pendingRequestsResource = ServiceRequestResource::collection($pendingRequests);
+        
+        // Devuelve ambas colecciones de recursos en la respuesta.
+        return response()->json([
+            'current_request' => $serviceRequestResource,
+            'pending_requests' => $pendingRequestsResource
+        ]);
     }
 
     /**

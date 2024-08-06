@@ -29,7 +29,6 @@ class ServiceRequestRequest extends FormRequest
             'collection_address'=>['required'],
             'preferred_contact_method' =>['required'],
             'damaged_appliance_image' =>['required'],
-            'application_date' =>['required'],
         ];
     }
 }

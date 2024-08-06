@@ -27,7 +27,6 @@ class ServiceRequestRequest extends FormRequest
             'brand' =>['required'],
             'problem_details' =>['required'],
             'collection_address'=>['required'],
-            'service_type' =>['required'],
             'preferred_contact_method' =>['required'],
             'damaged_appliance_image' =>['required'],
             'application_date' =>['required'],

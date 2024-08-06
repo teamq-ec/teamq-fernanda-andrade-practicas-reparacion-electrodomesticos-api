@@ -14,7 +14,7 @@ class ServiceRequest extends Model implements HasMedia
 
     protected $fillable = [
         'user_id', 'appliance_type', 'brand', 'problem_details', 'collection_address',
-        'service_type', 'preferred_contact_method', 'damaged_appliance_image', 'state'
+        'preferred_contact_method', 'damaged_appliance_image', 'state'
     ];
 
     public $timestamps = true;

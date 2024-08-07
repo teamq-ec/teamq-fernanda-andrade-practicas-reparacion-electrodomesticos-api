@@ -44,12 +44,8 @@ class ServiceRequestController extends Controller
         
         // Crea una colección de recursos para las solicitudes de servicio pendientes.
         $pendingRequestsResource = ServiceRequestResource::collection($pendingRequests);
-        
-        // Devuelve ambas colecciones de recursos en la respuesta.
-        return response()->json([
-            'current_request' => $serviceRequestResource,
-            'pending_requests' => $pendingRequestsResource
-        ]);
+
+        return new ServiceRequestResource($serviceRequestResource);
     }
 
     /**
